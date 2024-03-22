@@ -15,6 +15,7 @@ import os
 from configurations import Configuration, values
 
 class Dev(Configuration):   
+    
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -166,6 +167,10 @@ class Dev(Configuration):
     INTERNAL_IPS = ["192.168.10.226"]
 
     AUTH_USER_MODEL = "blango_auth.User"
+
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ACCOUNT_ACTIVATION_DAYS = 7
+
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
