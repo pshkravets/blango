@@ -55,6 +55,7 @@ class Dev(Configuration):
         'debug_toolbar',
         'rest_framework',
         'rest_framework.authtoken',
+        'drf_yasg',
     ]
 
     REST_FRAMEWORK = {
@@ -185,6 +186,13 @@ class Dev(Configuration):
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     ACCOUNT_ACTIVATION_DAYS = 7
 
+    SWAGGER_SETTINGS = {
+        "SECURITY_DEFINITIONS": {
+            "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+            "Basic": {"type": "basic"},
+        }
+
+    }
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
